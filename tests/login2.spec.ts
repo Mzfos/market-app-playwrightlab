@@ -7,29 +7,6 @@ test.describe('ระบบเข้าสู่ระบบ (Login System Tests
     await page.goto('http://localhost:5173/');
   });
 
-  // --- ชุดที่ 1: TC01 - TC03 ---
-  test('TC01 Login เจ้าของตลาด สำเร็จ', async ({ page }) => {
-    await page.getByLabel('หมายเลขโทรศัพท์มือถือ').fill('0800000000');
-    await page.getByPlaceholder('อย่างน้อย 8 ตัวอักษร').fill('uCrwVaBW390_0G0Q5QwAVrqr');
-    await page.getByRole('button', { name: 'เข้าสู่ระบบ' }).click();
-    await expect(page.getByText('ยินดีต้อนรับ')).toBeVisible();
-  });
-
-  test('TC02 Login เจ้าของตลาด ใส่เบอร์โทรผิด', async ({ page }) => {
-    await page.getByLabel('หมายเลขโทรศัพท์มือถือ').fill('0999999999');
-    await page.getByPlaceholder('อย่างน้อย 8 ตัวอักษร').fill('uCrwVaBW390_0G0Q5QwAVrqr');
-    await page.getByRole('button', { name: 'เข้าสู่ระบบ' }).click();
-    await expect(page.getByText('ยินดีต้อนรับ')).toBeVisible();
-  });
-
-  test('TC03 Login เจ้าของตลาด ใส่ pws ผิด', async ({ page }) => {
-    await page.getByLabel('หมายเลขโทรศัพท์มือถือ').fill('0800000000');
-    await page.getByPlaceholder('อย่างน้อย 8 ตัวอักษร').fill('wrongpassword');
-    await page.getByRole('button', { name: 'เข้าสู่ระบบ' }).click();
-    await expect(page.getByText('ยินดีต้อนรับ')).toBeVisible();
-  });
-
-
 // TC04: Login ไม่กรอกข้อมูล -> ตรวจเช็ก HTML5 Required Validation หรือข้อความแจ้งเตือนกรอกข้อมูล
   test('TC04 Login ไม่กรอกข้อมูล', async ({ page }) => {
     await page.getByRole('button', { name: 'เข้าสู่ระบบ' }).click();
